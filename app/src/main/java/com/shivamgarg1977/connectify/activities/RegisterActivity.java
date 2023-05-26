@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ import com.shivamgarg1977.connectify.R;
 public class RegisterActivity extends AppCompatActivity {
     TextInputEditText mfullNameET,muserEmailET,muserPasswordET;
     ExtendedFloatingActionButton mRegisterBtn;
+    TextView mLoginNavigator;
     ProgressDialog progressDialog;
 
     //firebase auth
@@ -36,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
         muserEmailET=findViewById(R.id.user_emailET);
         muserPasswordET=findViewById(R.id.user_passwordST);
         mRegisterBtn=findViewById(R.id.register_btn);
+        mLoginNavigator=findViewById(R.id.loginNavigator);
+
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Registering User....");
 
@@ -63,6 +67,13 @@ public class RegisterActivity extends AppCompatActivity {
                     registerUser(email,password);
                 }
 
+            }
+        });
+
+        mLoginNavigator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
             }
         });
 
